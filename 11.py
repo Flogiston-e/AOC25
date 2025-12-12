@@ -9,14 +9,13 @@ def paths(start = "you", goal = "out"):
     memory[goal] = 1
 
     def helper(device):
-        if device in memory:
-            return memory[device]
-        memory[device] = 0
-        for output in devices[device]:
-            memory[device] += helper(output)
+        if device not in memory:
+            memory[device] = 0
+            for output in devices[device]:
+                memory[device] += helper(output)
         return memory[device]
     
     return helper(start)
 
-print(paths("you", "out"))
+print(paths())
 print(max(paths("svr", "fft")*paths("fft", "dac")*paths("dac", "out"), paths("svr", "dac")*paths("dac", "fft")*paths("fft", "out")))
