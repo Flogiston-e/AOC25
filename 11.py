@@ -5,8 +5,8 @@ for row in input:
     devices[row[:3]] = row.split(" ")[1:]
 
 def paths(start = "you", goal = "out"):
-    memory = {goal: 1}
-    if goal != "out": memory["out"] = 0
+    memory = {"out": 0}
+    memory[goal] = 1
 
     def helper(device):
         if device in memory:
